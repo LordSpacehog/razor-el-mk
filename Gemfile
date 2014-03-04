@@ -3,6 +3,7 @@ ruby '1.9.3'
 source 'https://rubygems.org'
 
 gem 'facter'
+gem 'ohai'
 
 group :test do
   gem 'rspec', '~> 2.13.0'

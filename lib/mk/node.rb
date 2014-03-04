@@ -3,6 +3,8 @@ require_relative '../mk'
 require 'facter'
 require 'facter/util/ip'        # not automatically loaded in all cases
 
+require 'ohai'
+
 require 'singleton'
 require 'forwardable'
 
@@ -63,7 +65,14 @@ class MK::Node
   # included a selection of hardware based facts.  In this implementation, we
   # simply return what Facter does -- and deploy additional facts of our own
   # as required to add more data.
-  def_delegator 'Facter', 'to_hash', 'facts'
+  
+  def facts
+    ohai = Ohai::System.new
+    ohai.all_plugins
+
+    ohai.data
+  end
+  #def_delegator 'ohai', 'data', 'facts'
 
 
   # Calculate the "user agent" string, which is a collection of versioning

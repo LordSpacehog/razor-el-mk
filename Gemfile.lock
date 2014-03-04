@@ -28,6 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  ohai
   facter
   fakefs (~> 0.4.3)
   fuubar
